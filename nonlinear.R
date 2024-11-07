@@ -16,4 +16,12 @@ sales <- as.double(df$Sales)
 profit <- as.double(df$Profit)
 
 
-start_val <- c(a = as.double(3.50), b = as.double(9.40))
+start_val <- c(a = 3, b = 9)
+
+fit <- nls(profit ~ a * exp(b * sales), 
+            data = df,
+            start = start_val, 
+            algorithm = "port", 
+            control = nls.control(maxiter = 1000))
+
+summary(fit)
